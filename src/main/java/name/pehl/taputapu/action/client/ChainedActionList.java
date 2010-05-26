@@ -1,4 +1,4 @@
-package name.pehl.taputapu.client.action;
+package name.pehl.taputapu.action.client;
 
 import java.util.ArrayList;
 import java.util.Arrays;
