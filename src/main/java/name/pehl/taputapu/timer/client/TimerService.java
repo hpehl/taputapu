@@ -9,8 +9,8 @@ import com.google.gwt.user.client.Command;
 import com.google.gwt.user.client.Timer;
 
 /**
- * Singelton for managing {@link Timer} instances. Timer instances can be
- * started using the methods {@link #schedule(int, Command)} and
+ * Class for managing {@link Timer} instances. Timer instances can be started
+ * using the methods {@link #schedule(int, Command)} and
  * {@link #repeat(int, Command)}. These methods return a
  * {@linkplain TimerHandle handle} which can be used later on to stop the timer
  * using the method {@link #cancel(TimerHandle)}.
@@ -36,28 +36,12 @@ import com.google.gwt.user.client.Timer;
  */
 public final class TimerService
 {
-    private static TimerService instance;
     private Map<TimerHandle, Timer> timers;
 
 
-    private TimerService()
+    public TimerService()
     {
         timers = new HashMap<TimerHandle, Timer>();
-    }
-
-
-    /**
-     * Singleton Pattern
-     * 
-     * @return
-     */
-    public static TimerService get()
-    {
-        if (instance == null)
-        {
-            instance = new TimerService();
-        }
-        return instance;
     }
 
 
@@ -70,7 +54,7 @@ public final class TimerService
      *            how long to wait before the timer elapses, in milliseconds
      * @param command
      *            the code to be executed
-     * @return
+     * @return the unique timer handle
      */
     public TimerHandle schedule(final int delayMillis, final Command command)
     {
@@ -103,7 +87,7 @@ public final class TimerService
      *            between each repetition
      * @param command
      *            the code to be executed
-     * @return
+     * @return the unique timer handle
      */
     public TimerHandle repeat(final int periodMillis, final Command command)
     {
@@ -129,27 +113,32 @@ public final class TimerService
     /**
      * Cancels the timer specified by <code>handle</code>.
      * 
+     * @see Timer#cancel()
      * @param handle
      *            The handle which was returned by
      *            {@link #schedule(int, Command)} or
      *            {@link #repeat(int, Command)}.
+     * @return the canceled timer
      */
-    public void cancel(TimerHandle handle)
+    public Timer cancel(TimerHandle handle)
     {
         Timer timer = timers.remove(handle);
         if (timer != null)
         {
             timer.cancel();
         }
+        return timer;
     }
 
 
     /**
      * Cancels all timer managed by this TimerService.
+     * 
+     * @see Timer#cancel()
      */
     public void cancelAll()
     {
-        for (Iterator<Map.Entry<TimerHandle, Timer>> iter = timers.entrySet().iterator(); iter.hasNext();)
+        for (Iterator<Entry<TimerHandle, Timer>> iter = timers.entrySet().iterator(); iter.hasNext();)
         {
             Entry<TimerHandle, Timer> entry = iter.next();
             entry.getValue().cancel();
