@@ -51,7 +51,7 @@ public final class AnimationUtils
                 layoutPanel.setWidgetLeftWidth(current, 0, Unit.PCT, 100, Unit.PCT);
                 layoutPanel.setWidgetLeftWidth(widget, -100, Unit.PCT, 100, Unit.PCT);
                 break;
-            case RIGHT_TO_RIGHT:
+            case RIGHT_TO_LEFT:
                 layoutPanel.setWidgetLeftWidth(current, 0, Unit.PCT, 100, Unit.PCT);
                 layoutPanel.setWidgetLeftWidth(widget, 100, Unit.PCT, 100, Unit.PCT);
                 break;
@@ -75,7 +75,7 @@ public final class AnimationUtils
                 layoutPanel.setWidgetLeftWidth(current, 100, Unit.PCT, 100, Unit.PCT);
                 layoutPanel.setWidgetLeftWidth(widget, 0, Unit.PCT, 100, Unit.PCT);
                 break;
-            case RIGHT_TO_RIGHT:
+            case RIGHT_TO_LEFT:
                 layoutPanel.setWidgetLeftWidth(current, -100, Unit.PCT, 100, Unit.PCT);
                 layoutPanel.setWidgetLeftWidth(widget, 0, Unit.PCT, 100, Unit.PCT);
                 break;
@@ -108,7 +108,7 @@ public final class AnimationUtils
     public enum Direction
     {
         LEFT_TO_RIGHT,
-        RIGHT_TO_RIGHT,
+        RIGHT_TO_LEFT,
         TOP_TO_BOTTOM,
         BOTTOM_TO_TOP
     }
