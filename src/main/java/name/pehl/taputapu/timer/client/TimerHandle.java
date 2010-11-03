@@ -9,16 +9,17 @@ package name.pehl.taputapu.timer.client;
  */
 public class TimerHandle
 {
-    private long id;
+    private static int nextId = 0;
+    private final long id;
 
 
     /**
-     * Construct a new instance of this class and creates an unique identifier
-     * based on {@link System#currentTimeMillis()}.
+     * Construct a new instance of this class and creates an unique identifier.
      */
     public TimerHandle()
     {
-        this.id = System.currentTimeMillis();
+        this.id = nextId;
+        nextId++;
     }
 
 

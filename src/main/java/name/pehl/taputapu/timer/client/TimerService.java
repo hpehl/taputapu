@@ -18,16 +18,17 @@ import com.google.gwt.user.client.Timer;
  * The code to be executed must be specified using a {@link Command} instance:
  * 
  * <pre>
- * TimerHandle handle = TimerService.get().repeat(5000, new Command()
+ * TimerService timerService = ...;
+ * TimerHandle handle = timerService.repeat(5000, new Command()
  * {
- *     &#64;Override
+ *     {@code @}Override
  *     public void execute()
  *     {
  *         ...
  *     }
  * });
  * ...
- * TimerService.get().cancel(handle);
+ * timerService.cancel(handle);
  * </pre>
  * 
  * @author $Author$
@@ -58,22 +59,7 @@ public final class TimerService
      */
     public TimerHandle schedule(final int delayMillis, final Command command)
     {
-        if (command != null)
-        {
-            TimerHandle handle = new TimerHandle();
-            Timer timer = new Timer()
-            {
-                @Override
-                public void run()
-                {
-                    command.execute();
-                }
-            };
-            timers.put(handle, timer);
-            timer.schedule(delayMillis);
-            return handle;
-        }
-        return null;
+        return scheduleInternal(delayMillis, command, false);
     }
 
 
@@ -91,6 +77,12 @@ public final class TimerService
      */
     public TimerHandle repeat(final int periodMillis, final Command command)
     {
+        return scheduleInternal(periodMillis, command, true);
+    }
+
+
+    private TimerHandle scheduleInternal(final int interval, final Command command, final boolean repeat)
+    {
         if (command != null)
         {
             TimerHandle handle = new TimerHandle();
@@ -103,7 +95,14 @@ public final class TimerService
                 }
             };
             timers.put(handle, timer);
-            timer.scheduleRepeating(periodMillis);
+            if (repeat)
+            {
+                timer.scheduleRepeating(interval);
+            }
+            else
+            {
+                timer.schedule(interval);
+            }
             return handle;
         }
         return null;
