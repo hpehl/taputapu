@@ -7,80 +7,39 @@
     <parent>
         <groupId>name.pehl</groupId>
         <artifactId>superpom</artifactId>
-        <version>11</version>
+        <version>21</version>
     </parent>
 
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>name.pehl</groupId>
     <artifactId>taputapu</artifactId>
-    <version>0.1.0</version>
+    <version>0.2-SNAPSHOT</version>
     <name>Taputapu</name>
     <description>Useful stuff for GWT</description>
-    <url>http://code.google.com/p/taputapu/</url>
-
-
+    <url>https://github.com/hpehl/taputapu</url>
     <scm>
-        <connection>scm:svn:http://taputapu.googlecode.com/svn/trunk</connection>
-        <developerConnection>scm:svn:https://taputapu.googlecode.com/svn/trunk</developerConnection>
-        <tag>HEAD</tag>
-        <url>http://taputapu.googlecode.com/svn/trunk</url>
+        <connection>scm:git:git@github.com:hpehl/taputapu.git</connection>
+        <developerConnection>scm:git:git@github.com:hpehl/taputapu.git</developerConnection>
+        <url>git@github.com:hpehl/taputapu.git</url>
     </scm>
-    <distributionManagement>
-        <repository>
-            <id>taputapu-repo</id>
-            <name>Taputapu Repository</name>
-            <url>svn:https://taputapu.googlecode.com/svn/repository</url>
-        </repository>
-        <site>
-            <id>taputapu-site</id>
-            <name>Taputapu Site</name>
-            <url>svn:https://taputapu.googlecode.com/svn/site</url>
-        </site>
-    </distributionManagement>
-    <repositories>
-        <repository>
-            <id>pehl-parent</id>
-            <url>http://pehl-parent.googlecode.com/svn/repository</url>
-        </repository>
-    </repositories>
+
+
+    <properties>
+        <gwt.version>2.5.0</gwt.version>
+    </properties>
 
 
     <dependencies>
         <dependency>
             <groupId>com.google.gwt</groupId>
             <artifactId>gwt-user</artifactId>
+            <version>${gwt.version}</version>
         </dependency>
         <dependency>
             <groupId>com.google.gwt</groupId>
             <artifactId>gwt-dev</artifactId>
+            <version>${gwt.version}</version>
         </dependency>
     </dependencies>
-
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-eclipse-plugin</artifactId>
-                <configuration>
-                    <classpathContainers>
-                        <classpathContainer>org.eclipse.jdt.launching.JRE_CONTAINER</classpathContainer>
-                        <classpathContainer>com.google.gwt.eclipse.core.GWT_CONTAINER</classpathContainer>
-                    </classpathContainers>
-                    <additionalBuildcommands>
-                        <buildcommand>com.google.gdt.eclipse.core.webAppProjectValidator</buildcommand>
-                        <buildcommand>com.google.gwt.eclipse.core.gwtProjectValidator</buildcommand>
-                    </additionalBuildcommands>
-                    <additionalProjectnatures>
-                        <projectnature>com.google.gwt.eclipse.core.gwtNature</projectnature>
-                    </additionalProjectnatures>
-                    <excludes>
-                        <exclude>com.google.gwt:gwt-user</exclude>
-                        <exclude>com.google.gwt:gwt-dev</exclude>
-                    </excludes>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
 </project>
